@@ -1,0 +1,27 @@
+{
+    "name": "covid-19-nzdata",
+    "version": "1.0.0",
+    "description": "scraps/extracts nz covid-19 cases into json format",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lukesUbuntu/covid-19-nzdata.git"
+    },
+    "keywords": [
+        "covid",
+        "covid-19",
+        "nz"
+    ],
+    "author": "lukesubuntu",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/lukesUbuntu/covid-19-nzdata/issues"
+    },
+    "homepage": "https://github.com/lukesUbuntu/covid-19-nzdata#readme",
+    "dependencies": {
+        "x-ray": "^2.3.4"
+    }
+}
