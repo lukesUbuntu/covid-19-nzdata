@@ -17,7 +17,7 @@ var scrapeData = new Promise(function(resolve, reject) {
         table.forEach(result => {
             result = result.replace(/\t/g, "").split("\n");
             resultSet.push({
-                number: result[1],
+                case: result[1],
                 location: result[2],
                 age: result[3],
                 gender: result[4],
