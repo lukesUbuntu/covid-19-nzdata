@@ -3,13 +3,13 @@ const http = require('http');
 const Xray = require('x-ray')
 
 const PORT = "8080";
-const dataURL = "https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-cases";
+const dataURL = "https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-cases?";
 
 
 var scrapeData = new Promise(function(resolve, reject) {
     const req = Xray()
     const resultSet = [];
-    req(dataURL, 'table tbody', [{
+    req(dataURL + Math.random(), 'table tbody', [{
         results: req('tr', ['tr'])
     }]).then(function(response) {
 

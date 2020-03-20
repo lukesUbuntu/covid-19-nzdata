@@ -1,5 +1,5 @@
 <?php
-$response_data = file_get_contents("https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-cases");
+$response_data = file_get_contents("https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-cases?".rand());
 
 $dom = new DOMDocument;
 $dom->loadHTML($response_data);
