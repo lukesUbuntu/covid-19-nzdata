@@ -13,15 +13,16 @@ var scrapeData = new Promise(function(resolve, reject) {
         results: req('tr', ['tr'])
     }]).then(function(response) {
 
-        const table = response[0]['results'];
+        const table = response[1]['results'];
         table.forEach(result => {
-            result = result.replace(/\t/g, "").split("\n");
+            const results = result.replace(/\t/g, "").split("\n");
+            if (results[1] === "DHB" || results[1] === "Total") return;
+
             resultSet.push({
-                case: result[1],
-                location: result[2],
-                age: result[3],
-                gender: result[4],
-                notes: result[5]
+                dhb: results[1],
+                confirmed: results[2],
+                probable: results[3],
+                total: results[4],
             });
 
         });
