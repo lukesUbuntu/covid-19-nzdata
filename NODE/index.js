@@ -3,7 +3,7 @@ const http = require('http');
 const Xray = require('x-ray')
 
 const PORT = "8080";
-const dataURL = "https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-cases?";
+const dataURL = "https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-current-cases-details?";
 
 
 var scrapeData = new Promise(function(resolve, reject) {
@@ -13,16 +13,17 @@ var scrapeData = new Promise(function(resolve, reject) {
         results: req('tr', ['tr'])
     }]).then(function(response) {
 
-        const table = response[1]['results'];
+        const table = response[0]['results'];
         table.forEach(result => {
-            const results = result.replace(/\t/g, "").split("\n");
-            if (results[1] === "DHB" || results[1] === "Total") return;
+            const $results = result.replace(/\t/g, "").split("\n");
+            // if (results[1] === "DHB" || results[1] === "Total") return;
 
             resultSet.push({
-                dhb: results[1],
-                confirmed: results[2],
-                probable: results[3],
-                total: results[4],
+                case: $results[1],
+                dhb: $results[2],
+                age: $results[3],
+                gender: $results[4],
+                details: $results[5]
             });
 
         });
