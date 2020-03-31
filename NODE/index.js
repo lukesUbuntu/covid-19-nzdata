@@ -10,23 +10,27 @@ var scrapeData = new Promise(function(resolve, reject) {
     const req = Xray()
     const resultSet = [];
     req(dataURL + Math.random(), 'table tbody', [{
-        results: req('tr', ['tr'])
-    }]).then(function(response) {
+            results: req('tr', ['tr'])
+        }]).then(function(response) {
 
-        const table = response[1]['results'];
-        table.forEach(result => {
-            const $results = result.replace(/\t/g, "").split("\n");
-            if ($results[1] === "Total") return;
+            const table = response[1]['results'];
+            table.forEach(result => {
+                const $results = result.replace(/\t/g, "").split("\n");
+                if ($results[1] === "Total") return;
 
-            resultSet.push({
-                dhb: $results[1],
-                cases: $results[2],
+                resultSet.push({
+                    dhb: $results[1],
+                    cases: $results[2],
+                });
+
             });
 
+            resolve(resultSet)
+        })
+        .timeout(45 * 1000)
+        .catch(function(err) {
+            resolve(err)
         });
-
-        resolve(resultSet)
-    })
 })
 
 http.createServer(function(request, response) {
